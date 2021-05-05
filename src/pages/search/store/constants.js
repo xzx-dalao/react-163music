@@ -1,0 +1,18 @@
+export const CHANGE_SEARCH_VALUE="search/CHANGE_SEARCH_VALUE";
+export const GET_SEARCH_VALUE="search/GET_SEARCH_VALUE";
+export const GET_SEARCH_TYPE="search/GET_SEARCH_TYPE";
+export const CHANGE_FOCUS_STATE="search/CHANGE_FOCUS_STATE"
+//small
+export const CHANGE_SMALL_SEARCH_SONG_LIST = 'search/CHANGE_SMALL_SEARCH_SONG_LIST'
+
+
+//big
+export const CHANGE_SEARCH_SONG_LIST = 'search/CHANGE_SEARCH_SONG_LIST'
+export const CHANGE_SINGER_LIST = 'search/CHANGE_SINGER_LIST'
+export const CHANGE_ALBUM_LIST="search/CHANGE_ALBUM_LIST";
+export const CHANGE_DJ_LIST="search/CHANGE_DJ_LIST";
+export const CHANGE_SONGS_LIST="search/CHANGE_SONGS_LIST";
+
+
+export const CHANGE_SEARCH_LENGTH = 'search/CHANGE_SEARCH_LENGTH'
+export const CHANGE_PAGE_NUM = "search/CHANGE_PAGE_NUM";
