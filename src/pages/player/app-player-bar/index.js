@@ -11,8 +11,7 @@ import {
     getLyricAction,
     changeCurrentSongIndexAction,
 } from '../store/actionCreators';
-import { message } from 'antd'
-import { Slider } from 'antd';
+import { Slider, Tooltip, message } from 'antd';
 import { NavLink } from 'react-router-dom';
 import {
     PlaybarWrapper,
@@ -64,7 +63,7 @@ export default memo(function XZXAppPlayerBar() {
             dispatch(changeCurrentSongAction(windowcurrentSong))
             dispatch(getLyricAction(windowcurrentSong.id))
             dispatch(changeCurrentSongIndexAction(windowCurrentSongIndex))
-            dispatch(changeStopAction(true))
+            // dispatch(changeStopAction(true))
         })()
     }, [dispatch])
     useEffect(() => {
@@ -148,9 +147,13 @@ export default memo(function XZXAppPlayerBar() {
         dispatch(changeCurrentIndexAndSongAction(tag))
     }
     const handleMusicEnded = () => {
-        if (sequence === 0) {// 顺序播放
-            audioRef.current.pause()
-            dispatch(changeStopAction(true))
+        if (sequence === 0) {
+            // 顺序播放
+            // audioRef.current.pause()
+            // dispatch(changeStopAction(true))
+            //顺序列表播放
+            dispatch(changeCurrentIndexAndSongAction(1));
+            audioRef.current.play();
         }
         else if (sequence === 2) { // 单曲循环
             audioRef.current.currentTime = 0;
@@ -183,12 +186,18 @@ export default memo(function XZXAppPlayerBar() {
 
                 {/* 控制按钮 */}
                 <Control isPlaying={isPlaying}>
-                    <button className="sprite_player prev"
-                        onClick={e => changeMusic(-1)}></button>
-                    <button className="sprite_player play"
-                        onClick={e => playMusic()}></button>
-                    <button className="sprite_player next"
-                        onClick={e => changeMusic(1)}></button>
+                    <Tooltip title="上一首">
+                        <button className="sprite_player prev"
+                            onClick={e => changeMusic(-1)}></button>
+                    </Tooltip>
+                    <Tooltip title="播放/暂停">
+                        <button className="sprite_player play"
+                            onClick={e => playMusic()}></button>
+                    </Tooltip>
+                    <Tooltip title="下一首">
+                        <button className="sprite_player next"
+                            onClick={e => changeMusic(1)}></button>
+                    </Tooltip>
                 </Control>
                 {/* 跳转到歌曲详情 */}
                 <PlayInfo>
@@ -220,20 +229,40 @@ export default memo(function XZXAppPlayerBar() {
                     </div>
                 </PlayInfo>
                 {/* 各种按钮 */}
-                <Operator sequence={sequence}>
+                <Operator sequence={sequence}  >
                     <div className="left">
-                        <button className="sprite_player btn favor"></button>
-                        <button className="sprite_player btn share"></button>
+                        <Tooltip title="收藏">
+                            <button className="sprite_player btn favor"></button>
+                        </Tooltip>
+                        <Tooltip title="分享">
+                            <button className="sprite_player btn share"></button>
+                        </Tooltip>
                     </div>
                     <div className="right sprite_player">
-                        <button className="sprite_player btn volume"></button>
-                        <button className="sprite_player btn loop"
-                            onClick={e => changeSequence()}
-                        ></button>
-                        <button className="sprite_player btn playlist"
-                            onClick={e => setShowPanel(!showPanel)}>
-                            <span className="showlength">{playList.length}</span>
-                        </button>
+                        <Tooltip title="音量">
+                            <button className="sprite_player btn volume"></button>
+                        </Tooltip>
+
+                        <Tooltip title={[
+                            '列表循环',
+                            '随机播放',
+                            '单曲循环',
+                        ].map((item, index) =>
+                            index === sequence ? item : undefined
+                        )}>
+                            <button className="sprite_player btn loop"
+                                onClick={e => changeSequence()}
+                            ></button>
+                        </Tooltip>
+                        <Tooltip title="播放列表">
+                            <button className="sprite_player btn playlist"
+                                onClick={e => setShowPanel(!showPanel)}>
+                                <span className="showlength">{playList.length}</span>
+                            </button>
+                        </Tooltip>
+
+
+
                     </div>
                 </Operator>
             </div>
