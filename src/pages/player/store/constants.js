@@ -1,0 +1,12 @@
+export const CHANGE_CURRENT_SONG="player/CHANGE_CURRENT_SONG";
+export const CHANGE_PLAY_LIST="player/CHANGE_PLAY_LIST";
+export const CHANGE_CURRENT_SONG_INDEX="player/CHANGE_CURRENT_SONG_INDEX";
+
+
+//播放方式
+export const CHANGE_SEQUENCE="player/CHANGE_SEQUENCE"
+export const CHANGE_STOP="player/CHANGE_STOP"
+
+//歌词
+export const CHANGE_LYRIC_LIST="player/CHANGE_LYRIC_LIST"
+export const CHNAGE_CURRENT_LYRIC_INDEX="player/CHNAGE_CURRENT_LYRIC_INDEX"
