@@ -1,10 +1,10 @@
 import axios from 'axios';
-import {BASE_URL} from './config';
+import {BASE_URL,TIMEOUT} from './config';
 import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css' // progress bar style
 const instance = axios.create({
     baseURL:BASE_URL,
-    // timeout:TIMEOUT
+    timeout:TIMEOUT
 })
 NProgress.configure({ easing: 'ease', speed: 400 });
 instance.interceptors.request.use(config => {

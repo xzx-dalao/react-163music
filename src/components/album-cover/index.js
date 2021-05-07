@@ -16,10 +16,9 @@ export default memo(function XZXAlbumCover(props) {
   return (
     <AlbumWrapper size={size} width={width} bgp={bgp} imgwh={imgwh}icon={icon}iconactive={iconactive}>
       <div className="album-image">
-        <i className=" play sprite_icon" onClick={e=>PlayAllMusic(info.id)}></i>
         <img src={getSizeImage(info.picUrl, 150)} alt="" />
         <div className="cover sprite_covor">{info.name}</div>
-    
+        <i className=" play sprite_icon" onClick={e=>PlayAllMusic(info.id)}></i>
       </div>
       <div className="album-info">
         <div className="name">{info.name}</div>

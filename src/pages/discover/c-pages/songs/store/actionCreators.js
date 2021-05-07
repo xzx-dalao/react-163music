@@ -86,9 +86,11 @@ export const getSongsListAction = (id) => {
             const trackIds = res.playlist.trackIds[0]
             const trackIds1 = res.playlist && res.playlist.trackIds
             if (!trackIds) return;
+            console.log('4')
             dispatch(getSongDetailAction(trackIds.id))
             trackIds1.map(item =>
                 setTimeout(()=>{
+                    
                     dispatch(getAddSongDetailAction(item.id))
                 },100)
             )

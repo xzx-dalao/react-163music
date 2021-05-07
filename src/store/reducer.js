@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux-immutable'
-
+import { withReduxStateSync } from 'redux-state-sync';
 import {reducer as recommendReducer} from '../pages/discover/c-pages/recommend/store'
 import {reducer as playReducer} from '../pages/player/store'
 import { reducer as rankingReducer } from "../pages/discover/c-pages/ranking/store";
@@ -14,4 +14,4 @@ const cReducer = combineReducers({
     album:albumReducer,
     search:searchReducer
 });
-export default cReducer;
+export default withReduxStateSync(cReducer);

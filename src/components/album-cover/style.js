@@ -25,13 +25,12 @@ export const AlbumWrapper = styled.div`
       text-indent: -9999px;
     }
     .play {
-        /* display:none; */
+        display:none;
         position: absolute;
         left: 60%;
         bottom:5%;
         width: ${props => props.imgwh};
         height: ${props => props.imgwh};
-        z-index:1;
         background-position: 0 ${props => props.icon};
         &:hover {
           cursor: pointer;

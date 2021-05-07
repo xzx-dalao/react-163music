@@ -9,6 +9,7 @@ import {
 
 export default memo(function XZXDjRadiosCover(props) {
     const { info, right } = props;
+
     return (
         <SongsCoverWrapper right={right}>
             <div className="cover-top">

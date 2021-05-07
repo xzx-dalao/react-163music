@@ -14,7 +14,7 @@ export default memo(function XZXTopBanner() {
     //state
     const [currentIndex, setCurrentIndex] = useState(0)
     
-    //组件和redux关联
+    //组件和redux关联z
     const { topBanners } = useSelector(state => ({
         // topBanners:state.get("recommend").get("topBanners")
         topBanners: state.getIn(["recommend", "topBanners"])

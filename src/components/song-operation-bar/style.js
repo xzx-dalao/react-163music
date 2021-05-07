@@ -5,6 +5,7 @@ export const OperationBarWrapper = styled.div`
   align-items: center;
 
   .play {
+    cursor: pointer;
     display: flex;
     align-items: center;
     margin-right: 5px;
@@ -49,7 +50,7 @@ export const OperationBarWrapper = styled.div`
     margin-right: 6px;
     padding-right: 5px;
     background-position: right -1020px;
-    
+    cursor: pointer;
     .icon {
       display: inline-block;
       height: 31px;

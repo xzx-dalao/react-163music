@@ -2,7 +2,6 @@ import React, { memo, useState, useEffect } from 'react'
 import { shallowEqual, useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom'
 
-
 import { NavLink, Redirect } from 'react-router-dom'
 import { renderRoutes } from 'react-router-config'
 import { Input } from 'antd'
@@ -12,9 +11,11 @@ import {
     getSearchValueAction,
     changePageAction
 } from './store/actionCreators'
+
 import { searchCategories } from '@/common/local-data'
 import { useChangeDropBoxState } from '@/hooks/change-state'
 import { SearchWrapper } from './style'
+
 export default memo(function XZXSearch(props) {
     //order
     const { route } = props;
@@ -34,7 +35,6 @@ export default memo(function XZXSearch(props) {
     }), shallowEqual)
     const dispatch = useDispatch()
     //hook
-
     useEffect(() => {
         setSearchSongName(searchValue)
         setActiveIndex(0)
@@ -48,10 +48,8 @@ export default memo(function XZXSearch(props) {
         setTabName(name)
         setNnit(unit)
         dispatch(changePageAction(1))
-        // console.log(name)
     }
     const searchHandle = (e) => {
-        // console.log(searchSongName)
         dispatch(getSearchValueAction(searchSongName))
         dispatch(getSearchSongListAction(searchSongName, 30, searchType))
         history.push(`/search/${tabName}?song=${searchSongName}&type=${searchType}`)
@@ -59,7 +57,6 @@ export default memo(function XZXSearch(props) {
 
     return (
         <SearchWrapper onClick={useChangeDropBoxState()}>
-            {/* <h2>发现新大陆:</h2> */}
             <div className="wrap-v2 content">
                 <div className="search-bar sprite_03">
                     <Input

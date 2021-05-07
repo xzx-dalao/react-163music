@@ -8,7 +8,6 @@ export const PanelWrapper = styled.div`
   width: 986px;
   height: 301px;
   color: #e2e2e2;
-
   .main {
     position: relative;
     display: flex;

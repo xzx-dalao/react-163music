@@ -34,25 +34,27 @@ export default memo(function XZXSearchAlbum(props) {
     dispatch(getSearchAlbumListAction(song, 30, type, page));
   }
   return (
-    <SerachAlbumWrapper>
-      <div className="album-list">
-        {
-          albums && albums.map(item => {
-            return <XZXAlbumCover size={"130px"}
-              width={"153px"}
-              bgp={"-845px"}
-              imgwh={"28px"}
-              icon={"-140px"}
-              iconactive={"-170px"}
-              key={item.id}
-              info={item} />
-          })
+    <>
+      <SerachAlbumWrapper>
+        <div className="album-list">
+          {
+            albums && albums.map(item => {
+              return <XZXAlbumCover size={"130px"}
+                width={"153px"}
+                bgp={"-845px"}
+                imgwh={"28px"}
+                icon={"-140px"}
+                iconactive={"-170px"}
+                key={item.id}
+                info={item} />
+            })
 
-        }
-      </div>
+          }
+        </div>
+      </SerachAlbumWrapper>
       <XZXPagination currentPage={changePage}
         total={searchLength}
         onPageChange={onPageChange} />
-    </SerachAlbumWrapper>
+    </>
   )
 })

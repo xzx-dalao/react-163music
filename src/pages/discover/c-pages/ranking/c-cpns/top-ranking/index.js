@@ -39,7 +39,6 @@ export default withRouter(memo(function XZXTopRanking(props) {
         dispatch(changeRankingCurrentIndexAction(index))
     }
 
-
     return (
         <TopRankingWrapper>
             {

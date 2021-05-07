@@ -1,9 +1,4 @@
-/**
- * 
- * @param {Element} element 元素
- * @param {} to 
- * @param {Number} duration 总时长
- */
+
  export function scrollTo(element, to, duration) {
   
   if (duration <= 0) return;

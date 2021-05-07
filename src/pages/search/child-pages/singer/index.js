@@ -36,23 +36,23 @@ export default memo(function XZXSinger(props) {
   }
   const artists = singerList.artists || null;
   return (
-    <XZXSingerWrapper>
-      {artists && artists.map((item) => {
-        return (
-          <SingerItem
-            key={item.id}
-            coverPic={item.img1v1Url || item.picUrl}
-            singer={item.name}
-            accountId={item.accountId || null}
-          />
-        )
-      })}
-      <div className="page">
-        <XZXPagination currentPage={changePage}
-          total={searchLength}
-          onPageChange={onPageChange} />
-      </div>
+    <>
+      <XZXSingerWrapper>
+        {artists && artists.map((item) => {
+          return (
+            <SingerItem
+              key={item.id}
+              coverPic={item.img1v1Url || item.picUrl}
+              singer={item.name}
+              accountId={item.accountId || null}
+            />
+          )
+        })}
 
-    </XZXSingerWrapper>
+      </XZXSingerWrapper>
+      <XZXPagination currentPage={changePage}
+        total={searchLength}
+        onPageChange={onPageChange} />
+    </>
   )
 })

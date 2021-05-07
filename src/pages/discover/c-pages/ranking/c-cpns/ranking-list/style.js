@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const RankingListWrapper = styled.div`
-  padding: 0 40px;
+  padding: 0 30px 40px 40px;
 
   .play-list {
     table {
@@ -35,15 +35,40 @@ export const RankingListWrapper = styled.div`
       }
 
       tbody {
+        display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+        tr{
+      
+          display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+    &:hover{
+            .operate{
+              display:inline-flex;
+        
+          }
+        }
+        }
         td {
-          padding: 6px 10px 6px 10px;
+          padding: 6px 10px;
+          line-height: 18px;
+          text-align: left;
+          display: table-cell;
+          vertical-align: inherit;
         }
 
         tr:nth-child(2n) {
           background-color: #fff;
+          .operate{
+            background-color: #fff;
+          }
         }
 
         tr:nth-child(2n+1) {
+          .operate{
+            background-color: #f7f7f7;
+          }
           background-color: #f7f7f7;
         }
 
@@ -71,6 +96,7 @@ export const RankingListWrapper = styled.div`
           position:relative;
           justify-items: center;
           width: 300px;
+     
         
           img {
             width: 50px;
@@ -83,25 +109,68 @@ export const RankingListWrapper = styled.div`
             height: 17px;
             background-position: 0 -103px;
             margin-right: 15px;
+            cursor: pointer;
           }
 
           .name {
-            max-width: 88%;
+            max-width: 60%;
           }
           .text{
         color:#aeaeae
-      }
+          }
         }
         .time{
- 
-          padding-right:36px;
-          
+          position: relative;
+          .operate {
+          position: absolute;
+          display: flex; 
+          left:-5px;
+          align-items: center;  
+          display: none;
+         
+          .btn {
+            width: 17px;
+            height: 17px;
+            /* margin-left: 8px; */
+            cursor: pointer;
+          }
+          .addto {
+            position: relative;
+              top: 2px;
+              background-position: 1px -700px;
+          }
+          .down {
+            position: relative;
+            top: 2px;
+            background-position: -83px -174px;
+          }
+
+          .share {
+            position: relative;
+            top: 2px;
+            background-position: -46px -137px;
+          }
+
+          .favor {
+            position: relative;
+            top: -1px;
+            left:-1px;
+            background-position: -297px -268px;
+          }
+         
         }
+        .opt{
+            float:left;
+          }
+        
+        }
+        
         .singer{
           position:relative;
           padding-right:0px;
         }
       }
     }
+    
   }
 `

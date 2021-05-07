@@ -9,7 +9,7 @@ import {
 import {
   changePlayListAction,
 }from '../../../store/actionCreators'
-export default memo(function HYPlayHeader() {
+export default memo(function XZXPlayHeader() {
   const { playList, currentSong } = useSelector(state => ({
     playList: state.getIn(["player", "playList"]),
     currentSong: state.getIn(["player", "currentSong"])
@@ -17,6 +17,10 @@ export default memo(function HYPlayHeader() {
   const dispatch = useDispatch()
   const clearAllPlaylist = () => {
     dispatch(changePlayListAction([]));
+    localStorage.clear();
+    // window.localStorage.setItem('windowCurrentSong',0)
+    // window.localStorage.setItem('windowPlayList',0)
+    // window.localStorage.setItem('windowCurrentSongIndex',0)
   };
   return (
     <HeaderWrapper>
@@ -30,6 +34,7 @@ export default memo(function HYPlayHeader() {
           <button onClick={e => clearAllPlaylist()}>
             <i className="playlist_sprite icon remove"></i>
             清除
+            
           </button>
         </div>
       </HeaderLeft>

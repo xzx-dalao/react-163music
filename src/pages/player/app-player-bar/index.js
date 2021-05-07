@@ -1,15 +1,16 @@
 import React, { memo, useCallback, useEffect, useRef, useState } from 'react'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
-
 import { getSizeImage, formatDate, getPlaySong } from '@/utils/format-utils'
 import {
-    getSongDetailAction,
+    changeCurrentSongAction,
+    getAddSongDetailAction,
     changeSequenceAction,
     changeCurrentIndexAndSongAction,
     changeCurrentLyricIndexAction,
-    changeStopAction
+    changeStopAction,
+    getLyricAction,
+    changeCurrentSongIndexAction,
 } from '../store/actionCreators';
-
 import { message } from 'antd'
 import { Slider } from 'antd';
 import { NavLink } from 'react-router-dom';
@@ -19,7 +20,9 @@ import {
     PlayInfo,
     Operator
 } from './style'
-import HYAppPlayPanel from '../app-play-panel'
+import XZXAppPlayPanel from '../app-play-panel'
+
+
 
 export default memo(function XZXAppPlayerBar() {
     //state
@@ -49,7 +52,20 @@ export default memo(function XZXAppPlayerBar() {
     //其他hook
     const audioRef = useRef()
     useEffect(() => {
-        dispatch(getSongDetailAction(185697))
+        (function () {
+            var windowcurrentSong = JSON.parse(window.localStorage.getItem('windowCurrentSong'))
+            var windowCurrentSongIndex = JSON.parse(window.localStorage.getItem('windowCurrentSongIndex'))
+            var windowPlayList = JSON.parse(window.localStorage.getItem('windowPlayList'))
+            windowPlayList && windowPlayList.map(item => dispatch(getAddSongDetailAction(item.id)))
+            // if (windowCurrentSongIndex === null) return;
+            // if (windowPlayList.length === 0) return;
+            // if (windowCurrentSongIndex === undefined) return this.windowCurrentSongIndex = 0
+            if (!windowcurrentSong || windowPlayList.length === 0) return
+            dispatch(changeCurrentSongAction(windowcurrentSong))
+            dispatch(getLyricAction(windowcurrentSong.id))
+            dispatch(changeCurrentSongIndexAction(windowCurrentSongIndex))
+            dispatch(changeStopAction(true))
+        })()
     }, [dispatch])
     useEffect(() => {
         audioRef.current.src = getPlaySong(currentSong.id)
@@ -58,11 +74,12 @@ export default memo(function XZXAppPlayerBar() {
         }).catch(err => {
             setIsPlaying(false)
         })
-        if(stop===true){
+        if (stop === true) {
             audioRef.current.pause()
-            // console.log('整体橱柜')
         }
-    }, [currentSong,stop])
+    }, [currentSong, stop, dispatch])
+
+
     //其他操作
     const picUrl = (currentSong.al && currentSong.al.picUrl) || "";
     const singerName = (currentSong.ar && currentSong.ar[0].name) || "未知歌手";
@@ -70,11 +87,12 @@ export default memo(function XZXAppPlayerBar() {
     const showDuration = formatDate(duration, "mm:ss")//时长转换
     const showCurrentTime = formatDate(currentTime, "mm:ss")//当前时间转换
     // const progress=currentTime/duration*100;//进度条
+
     //其他方法
     const playMusic = useCallback(() => {
         isPlaying ? audioRef.current.pause() : audioRef.current.play()
         setIsPlaying(!isPlaying)
-        
+
     }, [isPlaying])
     const timeUpdate = (e) => {
         // console.log(e.target.currentTime)
@@ -85,14 +103,6 @@ export default memo(function XZXAppPlayerBar() {
         }
 
         //获取当前歌词
-        // let currentLyricIndex=0;
-        // for(let i=0;i<lyricList.length;i++){
-        //     let lyricItem=lyricList[i];
-        //     if(currentTime*1000<lyricItem.time){
-        //         currentLyricIndex=i
-        //         break;
-        //     }
-        // }
         let i = 0;
         for (; i < lyricList.length; i++) {
             let lyricItem = lyricList[i];
@@ -132,7 +142,7 @@ export default memo(function XZXAppPlayerBar() {
         dispatch(changeSequenceAction(currentSequence))
     }
     const changeMusic = (tag) => {
-        if(!playList.length) {
+        if (!playList.length) {
             return;
         };
         dispatch(changeCurrentIndexAndSongAction(tag))
@@ -145,7 +155,7 @@ export default memo(function XZXAppPlayerBar() {
         else if (sequence === 2) { // 单曲循环
             audioRef.current.currentTime = 0;
             audioRef.current.play();
-        } 
+        }
         else {//随机播放
             dispatch(changeCurrentIndexAndSongAction(1));
         }
@@ -157,7 +167,7 @@ export default memo(function XZXAppPlayerBar() {
         setCurrentTime(currentTime)
         setProgress(value)
         dispatch(changeStopAction(false))
-    }, [duration,dispatch])
+    }, [duration, dispatch])
     const sliderAfterChange = useCallback((value) => {
         const currentTime = value / 100 * duration / 1000
         audioRef.current.currentTime = currentTime
@@ -170,6 +180,7 @@ export default memo(function XZXAppPlayerBar() {
     return (
         <PlaybarWrapper className="sprite_player">
             <div className="content wrap-v2">
+
                 {/* 控制按钮 */}
                 <Control isPlaying={isPlaying}>
                     <button className="sprite_player prev"
@@ -179,12 +190,13 @@ export default memo(function XZXAppPlayerBar() {
                     <button className="sprite_player next"
                         onClick={e => changeMusic(1)}></button>
                 </Control>
-                    {/* 跳转到歌曲详情 */}
+                {/* 跳转到歌曲详情 */}
                 <PlayInfo>
                     <div className="image">
                         <NavLink to="/discover/player">
                             <img src={getSizeImage(picUrl, 35)} alt="" />
                         </NavLink>
+
                     </div>
                     <div className="info">
                         <div className="song">
@@ -220,7 +232,7 @@ export default memo(function XZXAppPlayerBar() {
                         ></button>
                         <button className="sprite_player btn playlist"
                             onClick={e => setShowPanel(!showPanel)}>
-                                <span className="showlength">{playList.length}</span>
+                            <span className="showlength">{playList.length}</span>
                         </button>
                     </div>
                 </Operator>
@@ -228,7 +240,7 @@ export default memo(function XZXAppPlayerBar() {
             <audio ref={audioRef}
                 onTimeUpdate={e => timeUpdate(e)}
                 onEnded={e => handleMusicEnded()} />
-            {showPanel && <HYAppPlayPanel />}
+            {showPanel && <XZXAppPlayPanel />}
         </PlaybarWrapper>
     )
 })

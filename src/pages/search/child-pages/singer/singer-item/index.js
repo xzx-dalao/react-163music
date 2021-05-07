@@ -6,6 +6,7 @@ import { AlbumItemWrapper } from './style'
 function SingerItem(props) {
   // props/state
   const { coverPic, singer, accountId } = props
+
   return (
     <AlbumItemWrapper>
       <div className="cover-pic">

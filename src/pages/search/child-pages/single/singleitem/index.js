@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 import propTypes from 'prop-types'
-import { usePlayMusic, useAddMusic,useDownMusic } from '@/hooks/music-handle'
+import { usePlayMusic, useAddMusic, useDownMusic } from '@/hooks/music-handle'
 
 import { PlayCircleOutlined } from '@ant-design/icons'
 import { SingleSongItemWrapper } from './style'
@@ -12,7 +12,7 @@ function SingleSongItem(props) {
   //自定义hook
   const addPlaylist = useAddMusic()
   const playMusic = usePlayMusic()
-  const downPlaylist=useDownMusic()
+  const downPlaylist = useDownMusic()
   return (
     <SingleSongItemWrapper>
       <div className="song-name">
@@ -27,15 +27,12 @@ function SingleSongItem(props) {
         </div>
       </div>
       <div className="operate">
-        <button
-          href="/discover/recommend"
-          className="btn sprite_icon2  addto"
-          onClick={e => addPlaylist(songId)}
-        ></button>
+        <button className="btn sprite_icon2  addto"
+          onClick={e => addPlaylist(songId)}></button>
         <button className="btn sprite_02 favor"></button>
         <button className="btn sprite_icon2 share"></button>
         <button className="btn sprite_table down"
-        onClick={e => downPlaylist(songId)}></button>
+          onClick={e => downPlaylist(songId)}></button>
       </div>
       <div className="singer">{singer}</div>
       <div className="text-nowrap album">{

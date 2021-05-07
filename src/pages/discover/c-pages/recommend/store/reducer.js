@@ -9,7 +9,7 @@ const defaultState = Map({
     upRanking: {},
     newRanking: {},
     originRanking: {},
-
+    
     rankingId: [],
 })
 

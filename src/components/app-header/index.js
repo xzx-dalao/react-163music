@@ -27,18 +27,14 @@ export default memo(function XZXAppHeader() {
     const dispatch = useDispatch()
     const inputRef = useRef();
 
-
     const { focusState } = useSelector((state) => ({
         focusState: state.getIn(['search', 'focusState'])
     }), shallowEqual);
     //hook
     useEffect(() => {
-
         if (focusState) inputRef.current.focus();
         else inputRef.current.blur();
-        // console.log(focusState)
     }, [focusState]);
-
 
     // 页面代码
     const showSelectItem = (item, index) => {
@@ -76,7 +72,7 @@ export default memo(function XZXAppHeader() {
         if (searchValue) {
             dispatch(changeFocusStateAction(true))
         }
-    }, [searchValue,dispatch]);
+    }, [searchValue, dispatch]);
     return (
         <HeaderWrapper>
             <div className="content wrap-v1">
@@ -100,11 +96,10 @@ export default memo(function XZXAppHeader() {
                         className="search"
                         placeholder="音乐/视频/电台/用户"
                         prefix={<SearchOutlined />}
-                        // onChange={changeInputAction}
                         onInput={({ target }) => changeInput(target)}
                         onFocus={handleFocus}
                     />
-                    {focusState &&<XZXSearchPage /> }
+                    {focusState && <XZXSearchPage />}
                     <div className="center">创作者中心</div>
                     <div>登录</div>
 

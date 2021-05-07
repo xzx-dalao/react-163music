@@ -19,12 +19,6 @@ export default memo(function XZXSearchPage() {
 
 
   const changeCurrentSong = (id, item) => {
-    // 放到搜索文本框
-    // setValue(item.name + '-' + item.artists[0].name);
-    // //派发action
-
-    // // 隐藏下拉框
-    // dispatch(changeFocusStateAction(false));
     console.log(id, item)
   };
   const touchSearchUser = () => {
@@ -32,7 +26,6 @@ export default memo(function XZXSearchPage() {
     history.push({ pathname: `/search/single?song=${searchValue}&type=1`, keywords: searchValue, limit })
     dispatch(getSearchSongListAction(searchValue, limit))
     dispatch(changeFocusStateAction(false))
-    // setRedict(true)
   }
 
   return (

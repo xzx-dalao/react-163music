@@ -15,7 +15,7 @@ import XZXAppFooter from '@/components/app-footer';
 import XZXAppPlayerBar from './pages/player/app-player-bar'
 
 
-const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
+const antIcon = <LoadingOutlined style={{ fontSize: 36}} spin />;
 export default memo(function App() {
 
   return (
