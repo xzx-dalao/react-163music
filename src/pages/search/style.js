@@ -7,6 +7,7 @@ export const SearchWrapper = styled.div`
     border: 1px solid #d3d3d3;
     border-width: 0 1px;
     margin: 0 auto;
+    
     .search-bar{
       display: flex;
       justify-content: center;
@@ -16,6 +17,22 @@ export const SearchWrapper = styled.div`
       background-position: 0px 0px;
    
     }
+    .switch{
+      position: absolute;
+    left: 47%;
+    display: block;
+    background-color: rgb(73, 177, 245);
+    line-height: 2.4;
+    padding-left:15px;
+    padding-right:15px;
+    font-size:15px;
+    color:rgb(255, 255, 255);
+    text-decoration:none;
+    .giticon{
+        margin-right:8px
+      }
+    }
+
     .search-warper{
         &:hover{
         .search-icon{

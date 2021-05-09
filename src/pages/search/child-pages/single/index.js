@@ -17,10 +17,11 @@ export default memo(function XZXSingle(props) {
   const { song, type } = qs.parse(props.location.search.substr(1))
   // redux hook
   const dispatch = useDispatch()
-  const { searchSongList, changePage, searchLength } = useSelector((state) => ({
+  const { searchSongList, changePage, searchLength,searchValue} = useSelector((state) => ({
     searchSongList: state.getIn(['search', 'searchSongList']),
     changePage: state.getIn(["search", "changePage"]),
-    searchLength: state.getIn(["search", "searchLength"])
+    searchLength: state.getIn(["search", "searchLength"]),
+    searchValue: state.getIn(["search", "searchValue"]),
   }), shallowEqual)
   const songs = searchSongList.songs || null;
 
@@ -49,6 +50,7 @@ export default memo(function XZXSingle(props) {
               singer={item.ar[0].name}
               album={item.al.name}
               tns={item.tns}
+              searchValue={searchValue}
               duration={formatMinuteSecond(item.dt)}
             />
           )

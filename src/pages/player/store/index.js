@@ -2,7 +2,7 @@ import reducer from './reducer';
 import {
   getSongDetailAction,
   getAddSongDetailAction,
-  changePlayListAction
+  changePlayListAction,
 }from './actionCreators'
 
 
@@ -10,5 +10,6 @@ export {
     reducer,
     getSongDetailAction,
     getAddSongDetailAction,
-    changePlayListAction
+    changePlayListAction,
+
   }

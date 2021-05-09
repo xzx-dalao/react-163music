@@ -8,14 +8,15 @@ import {
 import {
   SerachWrapper
 } from './style'
+import {highlightText} from '@/utils/highlightText'
 export default memo(function XZXSearchPage() {
   //redux hooks
   const history = useHistory();
   const dispatch = useDispatch()
-  const {searchValue,smallSongsList,}= useSelector(state => ({
-      searchValue: state.getIn(["search", "searchValue"]),
-      smallSongsList: state.getIn(["search", "smallSongsList"]),
-    }), shallowEqual)
+  const { searchValue, smallSongsList, } = useSelector(state => ({
+    searchValue: state.getIn(["search", "searchValue"]),
+    smallSongsList: state.getIn(["search", "smallSongsList"]),
+  }), shallowEqual)
 
 
   const changeCurrentSong = (id, item) => {
@@ -28,6 +29,9 @@ export default memo(function XZXSearchPage() {
     dispatch(changeFocusStateAction(false))
   }
 
+
+
+
   return (
     <SerachWrapper>
       <div className="all">
@@ -35,7 +39,6 @@ export default memo(function XZXSearchPage() {
       </div>
       <div className="category">{
         <div>
-
           <dl>
             <dt></dt>
             <div>
@@ -49,10 +52,11 @@ export default memo(function XZXSearchPage() {
                   </nav>
                   {
                     smallSongsList.songs.map((item) => {
+                      let arr=`${item.name}-${item.artists[0].name}`
+                      const songstext=highlightText(arr,searchValue)
                       return (
                         <div className="item " key={item.id} onClick={(e) => changeCurrentSong(item.id, item)}>
-                          <span className="link "
-                          >{item.name}-{item.artists[0].name}</span>
+                          <span className="link " dangerouslySetInnerHTML={{ __html: songstext }} ></span>
                         </div>
                       )
                     })
@@ -63,15 +67,15 @@ export default memo(function XZXSearchPage() {
                   <nav>
                     <dt>
                       <i className="sprite_icon2 artists-icon"></i>
-                      <span>歌手</span>
+                      <span >歌手</span>
                     </dt>
                   </nav>
                   {
                     smallSongsList.artists.map((item) => {
+                      const songstext=highlightText(item.name,searchValue)
                       return (
                         <div className="item " key={item.id} onClick={(e) => changeCurrentSong(item.id, item)}>
-                          <span className="link "
-                          >{item.name}</span>
+                         <span className="link " dangerouslySetInnerHTML={{ __html: songstext }} ></span>
                         </div>
                       )
                     })
@@ -87,10 +91,10 @@ export default memo(function XZXSearchPage() {
                   </nav>
                   {
                     smallSongsList.albums && smallSongsList.albums.map((item) => {
+                      const songstext=highlightText(item.name,searchValue)
                       return (
                         <div className="item " key={item.id} onClick={(e) => changeCurrentSong(item.id, item)}>
-                          <span className="link "
-                          >{item.name}</span>
+                          <span className="link " dangerouslySetInnerHTML={{ __html: songstext }} ></span>
                         </div>
                       )
                     })
@@ -106,10 +110,10 @@ export default memo(function XZXSearchPage() {
                   </nav>
                   {
                     smallSongsList.playlists.map((item) => {
+                      const songstext=highlightText(item.name,searchValue)
                       return (
                         <div className="item " key={item.id} onClick={(e) => changeCurrentSong(item.id, item)}>
-                          <span className="link "
-                          >{item.name}</span>
+                            <span className="link " dangerouslySetInnerHTML={{ __html: songstext }} ></span>
                         </div>
                       )
                     })

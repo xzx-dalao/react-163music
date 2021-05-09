@@ -39,7 +39,7 @@ export const SingleSongItemWrapper = styled.div`
           }
     .alia{
       /* position:relative;*/
-    max-width: 100%; 
+      max-width: 100%; 
       color:#aeaeae;
       text-decoration:none
     }

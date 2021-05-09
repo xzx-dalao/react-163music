@@ -5,7 +5,6 @@ import { useHistory } from 'react-router-dom'
 import { NavLink, Redirect } from 'react-router-dom'
 import { renderRoutes } from 'react-router-config'
 import { Input } from 'antd'
-
 import {
     getSearchSongListAction,
     getSearchValueAction,
@@ -69,12 +68,14 @@ export default memo(function XZXSearch(props) {
                     <div className="search-bar search-warper">
                         <div className="search-bar search-icon sprite_03" onClick={() => searchHandle()}></div>
                     </div>
-
                 </div>
+                <div >
+                </div>
+
                 <div className="search-content">
                     <div className="search-info">
                         搜索"{searchValue}", 找到
-            <span className="music-amount">{searchLength}</span>{unit}{tabTitle}
+                        <span className="music-amount">{searchLength}</span>{unit}{tabTitle}
                     </div>
                     <div className="m-tab search-category">
                         {searchCategories.map((item, index) => {

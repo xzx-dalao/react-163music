@@ -2,7 +2,7 @@
 import { useDispatch } from 'react-redux'
 import {
     getSongDetailAction,
-    getAddSongDetailAction
+    getAddSongDetailAction,
 } from '../pages/player/store/actionCreators'
 import { getPlaySong } from '@/utils/format-utils'
 
@@ -20,6 +20,12 @@ export function usePlayMusic() {
         dispatch(getSongDetailAction(item))
     }
 }
+// export function usePlayMusic_kw() {
+//     const dispatch = useDispatch()
+//     return (item) => {
+//         dispatch(getSongDetailAction_kw(item))
+//     }
+// }
 export function usePlayAllMusic() {
     const dispatch = useDispatch()
     return (item) => {

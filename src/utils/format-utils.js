@@ -10,6 +10,7 @@ export function getCount(count) {
 }
 
 export function getSizeImage(imgUrl, size) {
+  if(imgUrl===undefined) return;
   return `${imgUrl}?param=${size}x${size}`;
 }
 
@@ -48,6 +49,7 @@ export function formatMinuteSecond(time) {
 }
 
 export function getPlaySong(id) {
+  if(id===undefined) return;
   return `https://music.163.com/song/media/outer/url?id=${id}.mp3`;
 }
 export function debounce(func, delay) {

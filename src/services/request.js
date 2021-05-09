@@ -1,28 +1,48 @@
 import axios from 'axios';
-import {BASE_URL,TIMEOUT} from './config';
+import { BASE_URL_163 } from './config';
 import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css' // progress bar style
-const instance = axios.create({
-    baseURL:BASE_URL,
-    timeout:TIMEOUT
-})
-NProgress.configure({ easing: 'ease', speed: 400 });
-instance.interceptors.request.use(config => {
-    // console.log(config)
-    //1.比如config中的一些信息不符合服务器要求
-    //2.比如每次发送网络请求时,都希望在界面显示换一个请求图标
-    //3.某些网络请求(比如登录(token)),必须携带一些特殊信息
-    NProgress.start(); // 启动滚动条
-    return config
-  }, err => {
-    console.log(err)
-  })
 
-  //拦截响应
-  instance.interceptors.response.use(res => {
-    NProgress.done()// 关闭滚动条
-    return res.data
-  }, err => {
-    console.log(err)
+export default function request(option) {
+  return new Promise((resolve, reject) => {
+    // 1.创建axios的实例
+    const instance = axios.create({
+      baseURL: BASE_URL_163,
+    });
+
+    // 配置请求和响应拦截
+    instance.interceptors.request.use(config => {
+      NProgress.start(); // 启动滚动条
+      return config
+    }, err => {
+      return err
+    })
+    instance.interceptors.response.use(response => {
+      NProgress.done()// 关闭滚动条
+      return response.data
+    }, err => {
+      console.log('来到了response拦截failure中');
+      console.log(err);
+      if (err && err.response) {
+        switch (err.response.status) {
+          case 400:
+            err.message = '请求错误'
+            break
+          case 401:
+            err.message = '未授权的访问'
+            break
+          default:
+            err.message = "其他错误信息"
+        }
+      }
+      return err
+    })
+    // 2.传入对象进行网络请求
+    instance(option).then(res => {
+      resolve(res)
+    }).catch(err => {
+      reject(err)
+    })
   })
-export default instance;
+}
+

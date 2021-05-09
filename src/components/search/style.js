@@ -11,7 +11,9 @@ export const SerachWrapper = styled.div`
   border-radius: 5px;
   padding-top: 10px;
   color:#333;
-  
+  .aaa{
+    color:red
+  }
   .arrow {
     position: absolute;
     top: -11px;

@@ -6,12 +6,13 @@ import { reducer as rankingReducer } from "../pages/discover/c-pages/ranking/sto
 import { reducer as songsReducer } from "../pages/discover/c-pages/songs/store";
 import { reducer as albumReducer } from "../pages/discover/c-pages/album/store";
 import { reducer as searchReducer } from "../pages/search/store";
+
 const cReducer = combineReducers({
     recommend:recommendReducer,
     player:playReducer,
     ranking:rankingReducer,
     songs: songsReducer,
     album:albumReducer,
-    search:searchReducer
+    search:searchReducer,
 });
 export default withReduxStateSync(cReducer);

@@ -5,19 +5,18 @@ const defaultState = Map({
     playList: [],
     currentSongIndex: 0,
     currentSong: {},
-    sequence: 0, //0循环/1随机/2单曲
+    currentSong_kw: {},
+    sequence: 0, //0单曲循环/1随机/2列表循环
     lyricList: [],
     currentLyricIndex: 0,
     stop: false,
 })
 
-
-
 function reducer(state = defaultState, action) {
     switch (action.type) {
         case actionTypes.CHANGE_CURRENT_SONG:
-              //存当前播放哪一首到localStorage      
-              window.localStorage.setItem('windowCurrentSong', JSON.stringify(action.currentSong))
+            //存当前播放哪一首到localStorage      
+            window.localStorage.setItem('windowCurrentSong', JSON.stringify(action.currentSong))
             return state.set("currentSong", action.currentSong);
         case actionTypes.CHANGE_PLAY_LIST:
             //存PlayList到localStorage

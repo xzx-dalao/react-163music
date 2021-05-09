@@ -24,6 +24,8 @@ const XZXSearchSongs = React.lazy(() => import('@/pages/search/child-pages/songs
 const XZXSearchDj = React.lazy(() => import('@/pages/search/child-pages/dj'))
 const XZXSearchUser = React.lazy(() => import('@/pages/search/child-pages/user'))
 
+
+const XZX404 = React.lazy(() => import('@/pages/404'))
 const routes = [
     {
         path: "/",
@@ -99,7 +101,10 @@ const routes = [
             { path: '/search/dj', component: XZXSearchDj },
             { path: '/search/user', component: XZXSearchUser },
           ]
-    }
+    },
+    {
+        component: XZX404
+    },
 ];
 
 export default routes;

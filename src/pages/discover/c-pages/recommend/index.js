@@ -8,8 +8,8 @@ import XZXHotRecommend from './c-cpns/hot-recommend'
 import XZXNewAlbum from './c-cpns/new-album'
 import XZXRecommendRanking from './c-cpns/recommend-ranking'
 import XZXUserLogin from './c-cpns/user-login'
-import XZXSettleSinger from './c-cpns/settle-singer'
-import XZXHotAnchor from './c-cpns/hot-anchor'
+// import XZXSettleSinger from './c-cpns/settle-singer'
+// import XZXHotAnchor from './c-cpns/hot-anchor'
 import {
     RecommendWrapper,
     RecommendLeft,
@@ -34,8 +34,8 @@ function XZXRecommend() {
                 </RecommendLeft>
                 <RecommendRight>
                     <XZXUserLogin/>
-                    <XZXSettleSinger/>
-                    <XZXHotAnchor/>
+                    {/* <XZXSettleSinger/>
+                    <XZXHotAnchor/> */}
                 </RecommendRight>
             </Content>
         </RecommendWrapper>

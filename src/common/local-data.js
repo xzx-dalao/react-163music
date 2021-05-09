@@ -151,3 +151,63 @@ export const searchCategories = [
     name:'user'
   }
 ]
+
+export const switchCategories = [
+  // '单曲', '歌手', '专辑', '视频', '歌词', '歌单', '主播电台', '用户'
+  {
+    title: '单曲',
+    link: '/switch/single',
+    type:1,
+    unit:'首',
+    name:'single'
+  },
+  {
+    title: '歌手',
+    link: '/switch/singer',
+    type:100,
+    unit:'个',
+    name:'singer'
+  },
+  {
+    title: '专辑',
+    link: '/switch/album',
+    type:10,
+    unit:'张',
+    name:'album'
+  },
+  {
+    title: '视频',
+    link: '/switch/video',
+    type:1014,
+    unit:'个',
+    name:'video'
+  },
+  {
+    title: '歌词',
+    link: '/switch/artist',
+    type:1006,
+    unit:'个',
+    name:'artist'
+  },
+  {
+    title: '歌单',
+    link: '/switch/songs',
+    type:1000,
+    unit:'个',
+    name:'songs'
+  },
+  {
+    title: '声音主播',
+    link: '/switch/dj',
+    type:1009,
+    unit:'个',
+    name:'dj'
+  },
+  {
+    title: '用户',
+    link: '/switch/user',
+    type:1006,
+    unit:'个',
+    name:'user'
+  }
+]

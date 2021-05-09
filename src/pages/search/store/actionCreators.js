@@ -57,8 +57,10 @@ const changeSearchSongListAction = (searchSongList) => ({
 });
 
 export const getSearchSongListAction = (...searchStr) => {
+
   return (dispatch) => {
     getSearchSongData(...searchStr).then((res) => {
+      if(!res.result) return
       const searchSongList = res.result
       const leng = res.result.songCount
       dispatch(changeSearchSongListAction(searchSongList));
@@ -75,6 +77,7 @@ const changeSearchSingerListAction = (singerList) => ({
 export const getSearchSingerListAction = (...searchStr) => {
   return (dispatch) => {
     getSearchSongData(...searchStr).then((res) => {
+      if(!res.result) return
       const singerList = res.result
       const leng = res.result.artistCount
       dispatch(changeSearchSingerListAction(singerList))
@@ -92,6 +95,7 @@ const changeSearchAlbumListAction = (albumList) => ({
 export const getSearchAlbumListAction = (...searchStr) => {
   return (dispatch) => {
     getSearchSongData(...searchStr).then((res) => {
+      if(!res.result) return
       const albumList = res.result
       const leng = res.result.albumCount
       dispatch(changeSearchAlbumListAction(albumList))
@@ -107,8 +111,10 @@ const changeSearchSongsListAction = (playList) => ({
 })
 
 export const getSearchSongsListAction = (...searchStr) => {
+
   return (dispatch) => {
     getSearchSongData(...searchStr).then((res) => {
+      if(!res.result) return
       const playList = res.result
       const leng = res.result.playlistCount
       dispatch(changeSearchSongsListAction(playList))
@@ -123,8 +129,10 @@ const changeSearchDjListAction = (djRadiosList) => ({
 })
 
 export const getSearchDjRadiosListAction = (...searchStr) => {
+
   return (dispatch) => {
     getSearchSongData(...searchStr).then((res) => {
+      if(!res.result) return
       const djRadiosList = res.result
       const leng = res.result.djRadiosCount
       dispatch(changeSearchDjListAction(djRadiosList))

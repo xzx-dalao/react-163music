@@ -54,18 +54,18 @@ export const getNewAlbumAction = () => {
 }
 
 //存储榜单的ID值
- const changeRankingIdAction=(id)=>({
-    type:actionTypes.CHANGE_RANKING_ID,
-    rankingId:id.list.splice(0,3).map(item => item.id)
+const changeRankingIdAction = (id) => ({
+    type: actionTypes.CHANGE_RANKING_ID,
+    rankingId: id.list.splice(0, 3).map(item => item.id)
 })
 export const getRankingIdAction = () => {
     return dispatch => {
-      getTopList().then(res => {
-        dispatch(changeRankingIdAction(res));
-        // console.log(res)
-      })
+        getTopList().then(res => {
+            dispatch(changeRankingIdAction(res));
+            // console.log(res)
+        })
     }
-  }
+}
 //榜单
 const changeUpRankingAction = (res) => ({
     type: actionTypes.CHANGE_UP_RANKING,
@@ -83,24 +83,25 @@ const changeOriginRankingAction = (res) => ({
 
 })
 export const getTopListAction = (idx) => {
-    return (dispatch,getState) => {
-        const rankingId = getState().getIn(["recommend", "rankingId"])
-            getTopListsDetail(idx).then(res => {
-                switch (idx) {
-                    case rankingId[0]:
-                        dispatch(changeUpRankingAction(res))
-                        break;
-                    case rankingId[1]:
-                        dispatch(changeNewRankingAction(res))
-                        break;
-                    case rankingId[2]:
-                        dispatch(changeOriginRankingAction(res))
-                        break;
-                    default:
-                        break;
-                }
-            })
-        
+    return (dispatch) => {
+        // const rankingId = getState().getIn(["recommend", "rankingId"])
+        getTopListsDetail(idx).then(res => {
+            switch (idx) {
+                case 19723756:
+                    dispatch(changeUpRankingAction(res))
+                    break;
+                case 3779629:
+                    dispatch(changeNewRankingAction(res))
+                    break;
+                case 2884035:
+                    dispatch(changeOriginRankingAction(res))
+                    break;
+                default:
+                    break;
+
+            }
+        })
+
 
     }
 }

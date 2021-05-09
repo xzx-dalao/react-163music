@@ -1,4 +1,5 @@
 import { getSongDetail, getLyric } from '@/services/player'
+
 import { getRandomNumber } from '@/utils/math-utils'
 import { parseLyric } from '@/utils/parse-lyric';
 import * as actionTypes from './constants'
@@ -51,7 +52,7 @@ export const changeCurrentIndexAndSongAction = (tag) => {
                 if (currentSongIndex >= playList.length) currentSongIndex = 0//一直点下一个
                 if (currentSongIndex < 0) currentSongIndex = playList.length - 1//一直点上一个
         }
-        
+
         const currentSong = playList[currentSongIndex]
         dispatch(changeCurrentSongAction(currentSong))
         dispatch(changeCurrentSongIndexAction(currentSongIndex))
@@ -71,15 +72,6 @@ export const getSongDetailAction = (ids) => {
     return (dispatch, getState) => {
         //把localStorage的数据给playlist，（防止刷新）
         var playList = getState().getIn(["player", "playList"]);
-
-        // if (playList.length === 0) {
-        //     try {
-        //         var playList1 = JSON.parse(window.localStorage.getItem('windowPlayList'))
-        //         playList = playList1;
-        //     } catch (error) {
-        //       console.log(error)
-        //     }
-        // }
         //根据id查找playlist中是否已经有了该歌曲
         const songIndex = playList.findIndex(song => song.id === ids);
         //判断是否找到歌曲
@@ -94,12 +86,9 @@ export const getSongDetailAction = (ids) => {
                 //请求歌曲数据
                 song = res.songs && res.songs[0];
                 if (!song) return;
-
                 //将最新请求的歌曲添加到播放列表
                 const newPlayList = [...playList];
                 newPlayList.push(song);
-
-
                 //更新
                 dispatch(changePlayListAction(newPlayList));
                 dispatch(changeCurrentSongIndexAction(newPlayList.length - 1));
@@ -109,15 +98,12 @@ export const getSongDetailAction = (ids) => {
                 dispatch(getLyricAction(song.id))
             })
         }
-
-
-
     }
 }
 //添加到播放列表
 export const getAddSongDetailAction = (id) => {
     return (dispatch, getState) => {
-        getSongDetail(id).then((res) => { 
+        getSongDetail(id).then((res) => {
             const playList = getState().getIn(['player', 'playList'])
             // 先判断是已经存在播放列表,如果不存在,再进行添加
             const songIndex = playList.findIndex(song => song.id === id)
@@ -155,3 +141,5 @@ export const getLyricAction = (id) => {
         })
     }
 }
+
+
