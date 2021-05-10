@@ -6,7 +6,7 @@
  
 ## 预览地址
 - 项目原版地址：https://music.163.com/
-- 项目预览地址：119.23.233.90:5658
+- 项目预览地址：http://119.23.233.90:5657/
 
 ## 感谢
 - 感谢后端api提供者[Binaryify](https://github.com/Binaryify/NeteaseCloudMusicApi)
