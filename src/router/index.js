@@ -24,6 +24,8 @@ const XZXSearchSongs = React.lazy(() => import('@/pages/search/child-pages/songs
 const XZXSearchDj = React.lazy(() => import('@/pages/search/child-pages/dj'))
 const XZXSearchUser = React.lazy(() => import('@/pages/search/child-pages/user'))
 
+// const XZXSwitch = React.lazy(() => import("@/pages/switch"));
+// const XZXSwitchSingle = React.lazy(() => import('@/pages/switch/child-pages/single'))
 
 const XZX404 = React.lazy(() => import('@/pages/404'))
 const routes = [
@@ -83,6 +85,26 @@ const routes = [
         path: "/friend",
         component: XZXFriend
     },
+    // {
+    //     path: "/switch",
+    //     component: XZXSwitch,
+    //     routes: [
+    //         {
+    //           path: '/switch',
+    //           exact: true,
+    //              render: () => <Redirect to="/switch/single" />,
+    //         },
+    //         { path: '/switch/single', component: XZXSwitchSingle },
+    //         // { path: '/search/singer', component: XZXSearchSinger},
+    //         // { path: '/search/album', component: XZXSearchAlbum},
+    //         // { path: '/search/video', component: XZXSearchVideo },
+    //         // { path: '/search/artist', component: XZXSearchArtist },
+    //         // { path: '/search/songs', component: XZXSearchSongs },
+    //         // { path: '/search/dj', component: XZXSearchDj },
+    //         // { path: '/search/user', component: XZXSearchUser },
+    //       ]
+    // },
+        
     {
         path: "/search",
         component: XZXSearch,

@@ -1,9 +1,14 @@
 import { getSongDetail, getLyric } from '@/services/player'
-
+// import { getSongDetail_kw, getLyric_kw } from '@/services/kw/player'
 import { getRandomNumber } from '@/utils/math-utils'
 import { parseLyric } from '@/utils/parse-lyric';
 import * as actionTypes from './constants'
 
+//当前mode
+export const changePlayModeAction = (mode) => ({
+    type: actionTypes.CHANGE_MODE,
+    mode
+})
 //当前歌曲的信息
 export const changeCurrentSongAction = (currentSong) => ({
     type: actionTypes.CHANGE_CURRENT_SONG,
@@ -143,3 +148,54 @@ export const getLyricAction = (id) => {
 }
 
 
+//kwkwkwkkwkwkwkkw
+//播放歌曲
+// export const getSongDetailAction_kw = (info) => {
+//     if (!info) return;
+//     return (dispatch, getState) => {
+//         //把localStorage的数据给playlist，（防止刷新）
+//         var playList = getState().getIn(["player", "playList"]);
+//         //根据id查找playlist中是否已经有了该歌曲
+//         const songIndex = playList.findIndex(item => item.id === info.rid);
+
+//         //判断是否找到歌曲
+//         let song = null;
+//         if (songIndex !== -1) { //如果没有符合条件的元素返回 -1
+//             dispatch(changeCurrentSongIndexAction(songIndex));
+//             song = playList[songIndex];
+//             dispatch(changeCurrentSongAction(song));
+//             dispatch(getLyricAction_kw(info.rid))
+//         } else {
+//             dispatch(changeCurrentSongAction_kw(info))
+//             getSongDetail_kw(info.rid).then(res => {
+//                 //将最新请求的歌曲添加到播放列表
+//                 const newPlayList = [...playList];
+//                 newPlayList.push(info);
+//                 //更新
+//                 dispatch(changePlayListAction(newPlayList));
+//                 dispatch(changeCurrentSongIndexAction(newPlayList.length - 1));
+//                 dispatch(changeCurrentSongAction(res));
+//                 //请求歌词
+//                 dispatch(getLyricAction_kw(info.rid))
+//             })
+//         }
+//     }
+// }
+// //歌词
+// export const getLyricAction_kw = (id) => {
+//     return dispatch => {
+//         getLyric_kw(id).then(res => {
+//             if (!res.lyric_str) return;
+//             // if(res.nolyric||res.uncollected) return;//判断是否有歌词
+//             const lyric = res.lyric_str
+//             const lyricList = parseLyric(lyric)
+//             dispatch(changeGetLyricListAction(lyricList))
+//         })
+//     }
+// }
+
+// //当前kw歌曲的信息
+// export const changeCurrentSongAction_kw = (currentSong_kw) => ({
+//     type: actionTypes.CHANGE_CURRENT_SONG_KW,
+//     currentSong_kw
+// })

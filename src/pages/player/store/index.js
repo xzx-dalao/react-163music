@@ -3,6 +3,7 @@ import {
   getSongDetailAction,
   getAddSongDetailAction,
   changePlayListAction,
+  changePlayModeAction
 }from './actionCreators'
 
 
@@ -11,5 +12,5 @@ export {
     getSongDetailAction,
     getAddSongDetailAction,
     changePlayListAction,
-
+    changePlayModeAction
   }

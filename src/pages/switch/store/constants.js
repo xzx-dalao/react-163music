@@ -1,0 +1,1 @@
+// export const CHANGE_SEARCHLIST="switch/CHANGE_SEARCHLIST";

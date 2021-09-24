@@ -26,6 +26,7 @@ export const PlayListWrapper = styled.div`
       height: 50px;
       background-color: #9f9f9f;
       -webkit-border-radius: 4px;
+      
       /* outline: 2px solid #000; */
       /* outline-offset: -2px; */
       border: 2px solid #9f9f9f;

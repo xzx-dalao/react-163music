@@ -11,3 +11,4 @@ export const CHANGE_STOP="player/CHANGE_STOP"
 export const CHANGE_LYRIC_LIST="player/CHANGE_LYRIC_LIST"
 export const CHNAGE_CURRENT_LYRIC_INDEX="player/CHNAGE_CURRENT_LYRIC_INDEX"
 
+export const CHANGE_MODE="player/CHANGE_MODE";
